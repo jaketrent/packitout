@@ -5,7 +5,10 @@
     [integrant.core :as ig]
     [reitit.ring.middleware.muuntaja :as muuntaja]
     [reitit.ring.middleware.parameters :as parameters]
-    [ring.middleware.anti-forgery :refer [wrap-anti-forgery]]))
+    [ring.middleware.anti-forgery :refer [wrap-anti-forgery]]
+    [jaketrent.packitout.web.routes.utils :as utils]
+    [jaketrent.packitout.web.controllers.items :as items]))
+
 
 (defn wrap-page-defaults []
   (let [error-page (layout/error-page
@@ -16,9 +19,15 @@
 (defn home [request]
   (layout/render request "home.html"))
 
+(defn items-create [{:keys [flash] :as request}]
+  (let [{:keys [query-fn]} (utils/route-data request)]
+    (layout/render request "items/create.html" {:errors (:errors flash)})))
+
+
 ;; Routes
 (defn page-routes [_opts]
-  [["/" {:get home}]])
+  [["/" {:get home}]
+   ["/items/create" {:get items-create :post items/save-item!}]])
 
 (defn route-data [opts]
   (merge
