@@ -11,7 +11,8 @@
 
     ;; Routes
     [jaketrent.packitout.web.routes.api]
-    )
+    
+    [jaketrent.packitout.web.routes.pages])
   (:gen-class))
 
 ;; log uncaught exceptions in threads
