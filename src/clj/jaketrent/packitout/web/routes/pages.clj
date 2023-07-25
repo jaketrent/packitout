@@ -20,13 +20,16 @@
   (layout/render request "home.html"))
 
 (defn items-create [{:keys [flash] :as request}]
+  (layout/render request "items/create.html" {:errors (:errors flash)}))
+
+(defn items-list [{:keys [flash] :as request}]
   (let [{:keys [query-fn]} (utils/route-data request)]
-    (layout/render request "items/create.html" {:errors (:errors flash)})))
+    (layout/render request "items/list.html" {:items (query-fn :select-items {})
+                                              :errors (:errors flash)})))
 
-
-;; Routes
 (defn page-routes [_opts]
   [["/" {:get home}]
+   ["/items" {:get items-list}]
    ["/items/create" {:get items-create :post items/save-item!}]])
 
 (defn route-data [opts]
