@@ -1,67 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="todo: describe app here">
-    <title>TODO use tmpl</title>
+{% extends "base.html" %}
 
-    <!-- styles -->
-    <link href="/css/screen.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-    <!-- navbar -->
-    <nav>
-    </nav>
-    <section>
-        <div class="content">
-            <h2>Items Create</h2>
-        </div>
+{% block main %}
+<div class="content">
+  <h2>Items Create</h2>
+</div>
 
-        <form method="POST" action="/items/create">
-          {% csrf-field %}
-          <p>
-              <label>
-              Name:
-              <input type="text" name="name" value="{{name}}" />
-              </label>
-          </p>
-          {% if errors.name %}
-          <div class="notification is-danger">{{errors.name}}</div>
-          {% endif %}
+<form method="POST" action="/items/create">
+  {% csrf-field %}
+  <p>
+    <label>
+      Name:
+      <input type="text" name="name" value="{{name}}" />
+    </label>
+  </p>
+  {% if errors.name %}
+    <div class="notification is-danger">{{errors.name}}</div>
+  {% endif %}
 
-          <p>
-              <label>
-              Details:
-              <textarea class="textarea" name="details">{{details}}</textarea>
-              </label>
-          </p>
-          {% if errors.details %}
-          <div class="notification is-danger">{{errors.details}}</div>
-          {% endif %}
+  <p>
+    <label>
+      Details:
+      <textarea class="textarea" name="details">{{details}}</textarea>
+    </label>
+  </p>
+  {% if errors.details %}
+    <div class="notification is-danger">{{errors.details}}</div>
+  {% endif %}
 
-          <p>
-              <label>
-              Weight:
-              <input type="number" min="0" name="weight" value="{{weight}}" />
-              </label>
-          </p>
-          {% if errors.weight %}
-          <div class="notification is-danger">{{errors.weight}}</div>
-          {% endif %}
+  <p>
+    <label>
+      Weight:
+      <input type="number" min="0" name="weight" value="{{weight}}" />
+    </label>
+  </p>
+  {% if errors.weight %}
+    <div class="notification is-danger">{{errors.weight}}</div>
+  {% endif %}
 
-          <p>
-              <label>
-              Tags:
-              <input type="text" name="tags" value="{{tags}}" />
-              </label>
-          </p>
-          {% if errors.tags %}
-          <div class="notification is-danger">{{errors.tags}}</div>
-          {% endif %}
+  <p>
+    <label>
+      Tags:
+      <input type="text" name="tags" value="{{tags}}" />
+    </label>
+  </p>
+  {% if errors.tags %}
+    <div class="notification is-danger">{{errors.tags}}</div>
+  {% endif %}
 
-          <input type="submit" class="button is-primary is-outlined has-text-dark" value="Create" />
-      </form>
-    </section>
-</body>
-</html>
+  <input type="submit" class="button is-primary is-outlined has-text-dark" value="Create" />
+</form>
+{% endblock %}

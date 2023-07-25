@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create packing lists">
+  <title>Packitout</title>
+
+  <link href="/css/screen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <nav class="page-nav">
+    <ul>
+      {% block nav %}
+        <li><a href="/">Packitout</a></li>
+        <li><a href="/lists">Lists</a></li>
+        <li><a href="/items">Items</a></li>
+      {% endblock %}
+    </ul>
+  </nav>
+  <main>
+    {% block main %}
+    {% endblock %}
+  </main>
+</body>
+</html>

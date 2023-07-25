@@ -6,5 +6,5 @@ INSERT INTO item
 VALUES (:name, :details, :tags, :weight);
 
 -- :name select-items :? :*
-SELECT * FROM item
+SELECT * FROM item;
 
