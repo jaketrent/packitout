@@ -16,13 +16,40 @@ ul, ol {
 main {
   padding: 0 var(--s-horz-pad);
 }
-.page-nav {
+.nav {
   padding: 1rem var(--s-horz-pad);
-  background: #efefef;
 }
-.page-nav ul {
+.nav ul {
   display: flex;
   gap: 1rem;
   padding: 0;
   list-style: none;
+}
+.site-nav {
+  background: #ababab;
+}
+.sub-nav {
+  background: #efefef;
+}
+
+label {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+input,
+textarea {
+  width: 30rem;
+  max-width: 100%;
+}
+input {
+  height: 2rem;
+}
+textarea {
+  height: 4rem;
+  max-height: 12rem;
+}
+button {
+  height: 2rem;
+  padding: 0 1rem;
 }
