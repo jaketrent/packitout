@@ -2,11 +2,11 @@
 
 {% block main %}
 <div class="content">
-  <h2>Item Create</h2>
+  <h1>Item Edit</h1>
 </div>
 
-<form method="POST" action="/items/create">
+<form method="POST" action="/items/{{ item.id }}/edit">
   {% include "items/form.html" with item=item %}
-  <button>Create</button>
+  <button>Edit</button>
 </form>
 {% endblock %}

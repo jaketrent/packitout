@@ -31,6 +31,11 @@ main {
 .sub-nav {
   background: #efefef;
 }
+.sub-nav li:first-child::after {
+  content: "|";
+  display: inline-block;
+  padding: 0 0 0 1rem;
+}
 
 label {
   display: inline-flex;

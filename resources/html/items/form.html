@@ -1,0 +1,41 @@
+{% csrf-field %}
+
+<p>
+  <label>
+    Name:
+    <input type="text" name="name" value="{{item.name}}" />
+  </label>
+</p>
+{% if errors.name %}
+  <div class="notification is-danger">{{errors.name}}</div>
+{% endif %}
+
+<p>
+  <label>
+    Details:
+    <textarea class="textarea" name="details">{{item.details}}</textarea>
+  </label>
+</p>
+{% if errors.details %}
+  <div class="notification is-danger">{{errors.details}}</div>
+{% endif %}
+
+<p>
+  <label>
+    Weight:
+    <input type="number" min="0" name="weight" value="{{item.weight}}" />
+  </label>
+</p>
+{% if errors.weight %}
+  <div class="notification is-danger">{{errors.weight}}</div>
+{% endif %}
+
+<p>
+  <label>
+    Tags:
+    <input type="text" name="tags" value="{{item.tags}}" />
+  </label>
+</p>
+{% if errors.tags %}
+  <div class="notification is-danger">{{errors.tags}}</div>
+{% endif %}

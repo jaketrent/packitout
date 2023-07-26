@@ -1,12 +1,13 @@
 {% extends "items/base.html" %}
 
 {% block main %}
-<h1>Items List</h1>
+<h1>List Items</h1>
 
 <ul>
   {% for item in items %}
     <li>
-      {{item.name}}
+      <a href="/items/{{ item.id }}/edit">{{item.name}}</a>
+      <a href="/items/{{ item.id }}/destroy">❌</a>
     </li>
   {% endfor %}
 </ul>

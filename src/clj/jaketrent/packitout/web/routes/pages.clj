@@ -22,6 +22,11 @@
 (defn items-create [{:keys [flash] :as request}]
   (layout/render request "items/create.html" {:errors (:errors flash)}))
 
+(defn items-edit  [{:keys [flash, path-params] :as request}]
+  (let [{:keys [query-fn]} (utils/route-data request)]
+    (layout/render request "items/edit.html" {:item (query-fn :find-item {:id (:item-id path-params)})
+                                              :errors (:errors flash)})))
+
 (defn items-list [{:keys [flash] :as request}]
   (let [{:keys [query-fn]} (utils/route-data request)]
     (layout/render request "items/list.html" {:items (query-fn :select-items {})
@@ -30,7 +35,9 @@
 (defn page-routes [_opts]
   [["/" {:get home}]
    ["/items" {:get items-list}]
-   ["/items/create" {:get items-create :post items/save-item!}]])
+   ["/items/create" {:get items-create :post items/create-item!}]
+   ["/items/:item-id/edit" {:get items-edit :post items/update-item!}]
+   ["/items/:item-id/destroy" {:get items/delete-item!}]])
 
 (defn route-data [opts]
   (merge
