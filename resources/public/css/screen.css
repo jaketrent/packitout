@@ -36,6 +36,15 @@ main {
   display: inline-block;
   padding: 0 0 0 1rem;
 }
+.site-nav a,
+.sub-nav a {
+  text-decoration: none;
+}
+.site-nav a.active,
+.sub-nav a.active {
+  text-decoration: underline;
+  font-weight: 600;
+}
 
 label {
   display: inline-flex;

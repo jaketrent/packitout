@@ -13,8 +13,8 @@
     <ul>
       {% block sitenav %}
         <li><a href="/">Packitout</a></li>
-        <li><a href="/lists">Lists</a></li>
-        <li><a href="/items">Items</a></li>
+        <li><a href="/lists" class="{% if uri = "/lists" %}active{% endif %}">Lists</a></li>
+        <li><a href="/items" class="{% if uri = "/items" %}active{% endif %}">Items</a></li>
       {% endblock %}
     </ul>
   </nav>

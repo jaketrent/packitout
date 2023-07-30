@@ -16,7 +16,7 @@
 (defn render
   [request template & [params]]
   (-> (parser/render-file template
-                          (assoc params :page template :csrf-token *anti-forgery-token*)
+                          (assoc params :page template :csrf-token *anti-forgery-token* :uri (:uri request))
                           selmer-opts)
       (ok)
       (content-type "text/html; charset=utf-8")))

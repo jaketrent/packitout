@@ -4,8 +4,8 @@
 <nav class="nav sub-nav">
   <ul>
     <li>Items</li>
-    <li><a href="/items">List</a></li>
-    <li><a href="/items/create">Create</a></li>
+    <li><a href="/items" class="{% if uri = "/items" %}active{% endif %}">List</a></li>
+    <li><a href="/items/create" class="{% if uri = "/items/create" %}active{% endif %}">Create</a></li>
   </ul>
 </nav>
 {% endblock %}
