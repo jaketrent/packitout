@@ -1,0 +1,14 @@
+{% extends "lists/base.html" %}
+
+{% block main %}
+<h1>List Lists</h1>
+
+<ul>
+  {% for list in lists %}
+    <li>
+      <a href="/lists/{{ list.id }}/edit">{{list.name}}</a>
+      <a href="/lists/{{ list.id }}/destroy">❌</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

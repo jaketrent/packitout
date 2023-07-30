@@ -1,0 +1,12 @@
+{% extends "lists/base.html" %}
+
+{% block main %}
+<div class="content">
+  <h2>Lists Create</h2>
+</div>
+
+<form method="POST" action="/lists/create">
+  {% include "lists/form.html" with list=list %}
+  <button>Create</button>
+</form>
+{% endblock %}

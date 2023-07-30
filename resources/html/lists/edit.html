@@ -1,0 +1,12 @@
+{% extends "lists/base.html" %}
+
+{% block main %}
+<div class="content">
+  <h1>List Edit</h1>
+</div>
+
+<form method="POST" action="/lists/{{ list.id }}/edit">
+  {% include "lists/form.html" with list=list %}
+  <button>Edit</button>
+</form>
+{% endblock %}
