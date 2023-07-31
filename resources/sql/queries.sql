@@ -72,3 +72,13 @@ where id not in (
   where l.date_start <= :date_end
   or l.date_end >= :date_start
 );
+
+-- :name insert-list-item! :! :n
+INSERT INTO list_item
+(list_id, item_id)
+VALUES (:list-id, :item-id);
+
+-- :name delete-list-item! :! :n
+delete from list_item
+where list_id = :list-id
+and item_id = :item-id;

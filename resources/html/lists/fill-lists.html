@@ -1,0 +1,30 @@
+<div class="list-fill__cols">
+  <div>
+    <h2>Available items2</h2>
+    <ul>
+      {% for item in available_items %}
+        <li>
+          <form>
+            <button hx-post="/lists/{{list.id}}/fill/add" hx-target="#list-fill__lists">{{item.name}}</button>
+            <input type="hidden" name="item-id" value={{item.id}} />
+            {% csrf-field %}
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div>
+    <h2>Items in list</h2>
+    <ul>
+      {% for item in list_items %}
+        <li>
+          <form>
+            <button hx-post="/lists/{{list.id}}/fill/remove" hx-target="#list-fill__lists">{{item.name}}</button>
+            <input type="hidden" name="item-id" value={{item.id}} />
+            {% csrf-field %}
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

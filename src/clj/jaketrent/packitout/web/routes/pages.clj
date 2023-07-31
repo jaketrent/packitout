@@ -53,6 +53,33 @@
                                               :list list
                                               :errors (:errors flash)})))
 
+(defn lists-fill-add  [{:keys [flash, path-params, form-params] :as request}]
+  (let [{:keys [query-fn]} (utils/route-data request)
+        {:strs [item-id]} form-params
+        list-id (:list-id path-params)
+        ;; TODO: ensure that these are executed serially
+        _ (query-fn :insert-list-item! {:list-id list-id :item-id item-id})
+        list (query-fn :find-list {:id (:list-id path-params)})
+        list-items (query-fn :select-list-items {:id list-id})
+        available-items (query-fn :select-available-items {:date_start (:date_start list) :date_end (:date_end list)})]
+    (layout/render request "lists/fill-lists.html" {:available_items available-items
+                                                    :list_items list-items
+                                                    :list list
+                                                    :errors (:errors flash)})))
+
+(defn lists-fill-remove  [{:keys [flash, path-params, form-params] :as request}]
+  (let [{:keys [query-fn]} (utils/route-data request)
+        {:strs [item-id]} form-params
+        list-id (:list-id path-params)
+        _ (query-fn :delete-list-item! {:list-id list-id :item-id item-id})
+        list (query-fn :find-list {:id (:list-id path-params)})
+        list-items (query-fn :select-list-items {:id list-id})
+        available-items (query-fn :select-available-items {:date_start (:date_start list) :date_end (:date_end list)})]
+    (layout/render request "lists/fill-lists.html" {:available_items available-items
+                                                    :list_items list-items
+                                                    :list list
+                                                    :errors (:errors flash)})))
+
 (defn lists-list [{:keys [flash] :as request}]
   (let [{:keys [query-fn]} (utils/route-data request)]
     (layout/render request "lists/list.html" {:lists (query-fn :select-lists {})
@@ -65,6 +92,8 @@
    ["/lists/:list-id/edit" {:get lists-edit :post lists/update-list!}]
    ["/lists/:list-id/destroy" {:get lists/delete-list!}]
    ["/lists/:list-id/fill" {:get lists-fill}]
+   ["/lists/:list-id/fill/add" {:post lists-fill-add}]
+   ["/lists/:list-id/fill/remove" {:post lists-fill-remove}]
    ["/items" {:get items-list}]
    ["/items/create" {:get items-create :post items/create-item!}]
    ["/items/:item-id/edit" {:get items-edit :post items/update-item!}]
