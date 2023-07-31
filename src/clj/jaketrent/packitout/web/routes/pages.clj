@@ -43,6 +43,16 @@
     (layout/render request "lists/edit.html" {:list list
                                               :errors (:errors flash)})))
 
+(defn lists-fill  [{:keys [flash, path-params] :as request}]
+  (let [{:keys [query-fn]} (utils/route-data request)
+        list (query-fn :find-list {:id (:list-id path-params)})
+        list-items (query-fn :select-list-items {:id (:list-id path-params)})
+        available-items (query-fn :select-available-items {:date_start (:date_start list) :date_end (:date_end list)})]
+    (layout/render request "lists/fill.html" {:available_items available-items
+                                              :list_items list-items
+                                              :list list
+                                              :errors (:errors flash)})))
+
 (defn lists-list [{:keys [flash] :as request}]
   (let [{:keys [query-fn]} (utils/route-data request)]
     (layout/render request "lists/list.html" {:lists (query-fn :select-lists {})
@@ -54,6 +64,7 @@
    ["/lists/create" {:get lists-create :post lists/create-list!}]
    ["/lists/:list-id/edit" {:get lists-edit :post lists/update-list!}]
    ["/lists/:list-id/destroy" {:get lists/delete-list!}]
+   ["/lists/:list-id/fill" {:get lists-fill}]
    ["/items" {:get items-list}]
    ["/items/create" {:get items-create :post items/create-item!}]
    ["/items/:item-id/edit" {:get items-edit :post items/update-item!}]

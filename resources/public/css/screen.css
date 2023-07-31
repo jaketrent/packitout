@@ -67,3 +67,9 @@ button {
   height: 2rem;
   padding: 0 1rem;
 }
+
+.list-fill__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem; 
+}

@@ -1,13 +1,14 @@
 {% extends "lists/base.html" %}
 
 {% block main %}
-<h1>List2 Lists4</h1>
+<h1>All Lists</h1>
 
 <ul>
   {% for list in lists %}
     <li>
       <a href="/lists/{{ list.id }}/edit">{{list.name}}</a>
       <a href="/lists/{{ list.id }}/destroy">❌</a>
+      <a href="/lists/{{ list.id }}/fill">🪣</a>
     </li>
   {% endfor %}
 </ul>

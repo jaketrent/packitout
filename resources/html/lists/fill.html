@@ -1,0 +1,30 @@
+{% extends "lists/base.html" %}
+
+{% block main %}
+<div class="content">
+  <h1>Fill {{list.name}} List</h1>
+</div>
+
+<div class="list-fill__cols">
+  <div>
+    <h2>Available items</h2>
+    <ul>
+      {% for item in available_items %}
+        <li>
+          <button>{{item.name}}</button>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div>
+    <h2>Items in list</h2>
+    <ul>
+      {% for item in list_items %}
+        <li>
+          <button>{{item.name}}</button>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
