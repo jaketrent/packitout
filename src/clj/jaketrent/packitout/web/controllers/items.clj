@@ -54,3 +54,8 @@
         (log/error e "failed to delete item")
         (-> (http-response/found redir-url)
             (assoc :flash {:errors {:unknown (.getMessage e)}}))))))
+
+(defn calc-total-weight [items]
+  (let [g (reduce + (map #(:weight %) items))
+        lb (* 0.00220462 g)]
+    {:g g :lb lb}))

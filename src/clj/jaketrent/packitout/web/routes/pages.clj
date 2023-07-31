@@ -47,10 +47,12 @@
   (let [{:keys [query-fn]} (utils/route-data request)
         list (query-fn :find-list {:id (:list-id path-params)})
         list-items (query-fn :select-list-items {:id (:list-id path-params)})
+        total-weight (items/calc-total-weight list-items)
         available-items (query-fn :select-available-items {:date_start (:date_start list) :date_end (:date_end list)})]
     (layout/render request "lists/fill.html" {:available_items available-items
                                               :list_items list-items
                                               :list list
+                                              :total-weight total-weight
                                               :errors (:errors flash)})))
 
 (defn lists-fill-add  [{:keys [flash, path-params, form-params] :as request}]
@@ -61,10 +63,12 @@
         _ (query-fn :insert-list-item! {:list-id list-id :item-id item-id})
         list (query-fn :find-list {:id (:list-id path-params)})
         list-items (query-fn :select-list-items {:id list-id})
+        total-weight (items/calc-total-weight list-items)
         available-items (query-fn :select-available-items {:date_start (:date_start list) :date_end (:date_end list)})]
     (layout/render request "lists/fill-lists.html" {:available_items available-items
                                                     :list_items list-items
                                                     :list list
+                                                    :total-weight total-weight
                                                     :errors (:errors flash)})))
 
 (defn lists-fill-remove  [{:keys [flash, path-params, form-params] :as request}]
@@ -74,10 +78,12 @@
         _ (query-fn :delete-list-item! {:list-id list-id :item-id item-id})
         list (query-fn :find-list {:id (:list-id path-params)})
         list-items (query-fn :select-list-items {:id list-id})
+        total-weight (items/calc-total-weight list-items)
         available-items (query-fn :select-available-items {:date_start (:date_start list) :date_end (:date_end list)})]
     (layout/render request "lists/fill-lists.html" {:available_items available-items
                                                     :list_items list-items
                                                     :list list
+                                                    :total-weight total-weight
                                                     :errors (:errors flash)})))
 
 (defn lists-list [{:keys [flash] :as request}]

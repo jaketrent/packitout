@@ -1,15 +1,39 @@
 {% extends "lists/base.html" %}
 
 {% block main %}
-<h1>All Lists</h1>
+<h1>Lists Table</h1>
 
-<ul>
-  {% for list in lists %}
-    <li>
-      <a href="/lists/{{ list.id }}/edit">{{list.name}}</a>
-      <a href="/lists/{{ list.id }}/destroy">❌</a>
-      <a href="/lists/{{ list.id }}/fill">🪣</a>
-    </li>
-  {% endfor %}
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>List Name</th>
+      <th>Details</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for list in lists %}
+      <tr>
+        <td>
+          <a href="/lists/{{ list.id }}/edit">{{list.name}}</a>
+        </td>
+        <td>
+          {{list.details}}
+        </td>
+        <td>
+          {{list.date_start}}
+        </td>
+        <td>
+          {{list.date_end}}
+        </td>
+        <td>
+          <a href="/lists/{{ list.id }}/destroy">❌</a>
+          <a href="/lists/{{ list.id }}/fill">🪣</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

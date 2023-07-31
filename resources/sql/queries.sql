@@ -1,5 +1,7 @@
 -- Place your queries here. Docs available https://www.hugsql.org/
 
+-- TODO: enable foreign keys on startup in sqlite
+
 -- :name insert-item! :! :n
 INSERT INTO item
 (name, details, tags, weight)

@@ -1,14 +1,38 @@
 {% extends "items/base.html" %}
 
 {% block main %}
-<h1>List Items</h1>
+<h1>Items Table</h1>
 
-<ul>
-  {% for item in items %}
-    <li>
-      <a href="/items/{{ item.id }}/edit">{{item.name}}</a>
-      <a href="/items/{{ item.id }}/destroy">❌</a>
-    </li>
-  {% endfor %}
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>item Name</th>
+      <th>Details</th>
+      <th>Weight</th>
+      <th>Tags</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+      <tr>
+        <td>
+          <a href="/items/{{ item.id }}/edit">{{item.name}}</a>
+        </td>
+        <td>
+          {{item.details}}
+        </td>
+        <td>
+          {{item.weight}}
+        </td>
+        <td>
+          {{item.tags}}
+        </td>
+        <td>
+          <a href="/items/{{ item.id }}/destroy">❌</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
