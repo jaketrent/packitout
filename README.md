@@ -18,6 +18,20 @@ To reload changes:
 (reset)
 ```
 
+## Import data
+
+
+```
+sqlite3 packitout_dev.db
+
+.import /home/jaketrent/dev/packitout/resources/data/item.csv item_temp;
+
+insert into item (name,details) select * from item_temp;
+
+drop table item_temp;
+```
+
+
 ## REPLs
 
 ### Cursive
