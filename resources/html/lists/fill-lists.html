@@ -1,7 +1,7 @@
 <div class="list-fill__cols">
   <div>
     <h2>Available items</h2>
-    <ul>
+    <ul class="list-fill__list">
       {% for item in available_items %}
         <li>
           <form>
@@ -18,7 +18,7 @@
     <div>
       Total weight: {{total-weight.g}}g ({{total-weight.lb|number-format:%.2f}}lb)
     </div>
-    <ul>
+    <ul class="list-fill__list list-fill__list--list">
       {% for item in list_items %}
         <li>
           <form>

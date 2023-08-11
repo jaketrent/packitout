@@ -1,4 +1,12 @@
 :root {
+  /* https://coolors.co/palette/003049-d62828-f77f00-fcbf49-eae2b7 */
+  --c-fg-rgb: 0, 48, 73;
+  --c-accent1-rgb: 214, 40, 40;
+  --c-accent2-rgb: 247, 127, 0;
+  --c-bg1-rgb: 234, 226, 183;
+  --c-bg2-rgb: 252, 191, 73;
+  /* --c-fg-rgb: 98, 23, 8; */
+
   --s-horz-pad: 1rem;
 }
 * {
@@ -9,6 +17,8 @@ html, body {
   line-height: 1.25em;
   padding: 0;
   margin: 0;
+  background-color: rgb(var(--c-bg1-rgb));
+  color: rgb(var(--c-fg-rgb));
 }
 ul, ol {
   margin: 0;
@@ -21,15 +31,46 @@ main {
 }
 .nav ul {
   display: flex;
+  align-items: center;
   gap: 1rem;
   padding: 0;
   list-style: none;
 }
 .site-nav {
-  background: #ababab;
+  --c-bg-rgb: 98, 23, 8;
+
+  background: rgb(var(--c-bg-rgb));
+  font-size: 2.5rem;
+  line-height: 1em;
+}
+.site-nav a {
+  color: #fff;
+}
+.site-nav ul {
+  gap: 2rem;
+}
+.site-nav li {
+  transition: 600ms transform, 600ms background;
+}
+.site-nav li:not(:first-child) a:hover,
+.site-nav li:not(:first-child) a:focus {
+  text-decoration: underline;
+  text-decoration-color: rgb(var(--c-accent2-rgb));
+}
+.site-nav li:first-child {
+  font-weight: 600;
+  border: 3px solid rgb(var(--c-accent2-rgb));
+  padding: 0.5rem;
+  transform: skew(-10deg);
+  margin-right: 2rem;
+}
+.site-nav li:first-child:focus-within,
+.site-nav li:first-child:hover {
+  transform: skew(0deg) scale(1.05);
+  background: linear-gradient(rgb(var(--c-accent2-rgb)), rgb(var(--c-accent1-rgb)));
 }
 .sub-nav {
-  background: #efefef;
+  background: rgba(var(--c-bg2-rgb), 1);
 }
 .sub-nav li:first-child::after {
   content: "|";
@@ -72,4 +113,31 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem; 
+}
+.list-fill__list {
+  list-style: none;
+  padding: 0;
+}
+.list-fill__list li {
+  margin-bottom: 0.5rem;
+}
+.list-fill__list button { 
+  color: rgb(var(--c-fg-rgb));
+  border: 1px solid rgb(var(--c-accent2-rgb));
+  border-radius: 6px;
+  transition: 300ms background, 300ms translate;
+  cursor: pointer;
+}
+.list-fil__list--list button {
+  border: 1px solid rgb(var(--c-accent1-rgb));
+}
+.list-fill__list button:hover,
+.list-fill__list button:focus { 
+  background: rgb(var(--c-accent2-rgb));
+  translate: 0.5rem 0;
+}
+.list-fill__list--list button:hover,
+.list-fill__list--list button:focus { 
+  background: rgb(var(--c-accent1-rgb));
+  translate: -0.5rem 0;
 }
